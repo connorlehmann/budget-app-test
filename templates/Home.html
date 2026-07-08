@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<html>
+
+	<head>
+		<title>Home </title>
+	</head>
+	<body>
+		<h1>Home </h1>
+		<h2>Dashboard </h2>
+
+
+		<table border="1">
+		<tr>
+			<th>Expense Tracker </th>
+		</tr>
+		<tr>
+			<td>Total Spent </td>
+			<td>{{ total_spent}}</td>
+		</tr>
+		<tr>
+			<td>Total Budget </td>
+			<td>0 </td>
+		</tr>
+		</table>
+		
+
+
+			<table border="1">
+		<tr>
+			<th colspan="3">Categorical Spending</th>
+		</tr>
+
+		<tr>
+			<th>Date</th>
+			<th>Name</th>
+			<th>Price</th>
+			<th>Category</th>
+			<th>Expense Type</th>
+			<th>Bill Type</th>
+		</tr>
+
+		{% for expense in expenses %}
+		<tr>
+			<td>{{ expense["date"] }}</td>
+			<td>{{ expense["name"] }}</td>
+			<td>{{ expense["price"] }}</td>
+			<td>{{ expense["category"] }}</td>
+			<td>{{ expense["expense_type"] }}</td>
+			<td>{{ expense["bill_type"] }}</td>
+		</tr>
+		{% endfor %}
+
+	</table>
+
+		<p>
+		<a href="addexpense">Add Expense </a>
+		</p>
+	</body>
+</html>
