@@ -10,14 +10,14 @@
 	</head>
 	<body>
 		<h1>Add Expense </h1>
-		<form>
-			<label>Add Expense </label><br>
-			<label>Name</label><input name="Name"><br>
-			<label>Price</label><input name="Price"><br>
-			<label>Category </label><input name="Category"><br>
-			<label>Expense Type</label><input name="Expense Type"><br>
-			<label>Bill Type</label><input name="Bill Type"><br>
-			<button>Add </button>
+		<form method="POST" action="/add_expense">
+			{{ form.hidden_tag() }}
+			{{ form.name.label }} {{ form.name() }}<br>
+			{{ form.price.label }} {{ form.price() }}<br>
+			{{ form.category.label }} {{ form.category() }}<br>
+			{{ form.expense_type.label }} {{ form.expense_type() }}<br>
+			{{ form.bill_type.label }} {{ form.bill_type() }}<br>
+			{{ form.submit() }}
 		</form>
 		
 
