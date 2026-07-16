@@ -1,7 +1,10 @@
 import json
 from flask import Flask, render_template
+from forms import ExpenseForm
+
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'eZbOFITfJVsEj?#9'
 
 @app.route("/")
 @app.route("/home")
@@ -15,6 +18,7 @@ def home():
 
 @app.route("/addexpense")
 def addexpense():
+    form = ExpenseForm()
     return render_template('AddExpense.html')
 
 if __name__ == "__main__":
