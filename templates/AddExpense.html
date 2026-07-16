@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<h1>Add Expense </h1>
-		<form method="POST" action="/add_expense">
+		<form method="POST" action="{{ url_for('addexpense') }}">
 			{{ form.hidden_tag() }}
 			{{ form.name.label }} {{ form.name() }}<br>
 			{{ form.price.label }} {{ form.price() }}<br>
