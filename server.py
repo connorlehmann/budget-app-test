@@ -19,7 +19,7 @@ def home():
 @app.route("/addexpense")
 def addexpense():
     form = ExpenseForm()
-    return render_template('AddExpense.html')
+    return render_template('AddExpense.html', title='Regular', form=form)
 
 if __name__ == "__main__":
     app.run(debug=True)
