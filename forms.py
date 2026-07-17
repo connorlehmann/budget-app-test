@@ -1,11 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, DecimalField, SubmitField
+from wtforms import StringField, DecimalField, SelectField, SubmitField
 from wtforms.validators import DataRequired, NumberRange, Length
 
 class ExpenseForm(FlaskForm):
     name = StringField('Expense Name', validators=[DataRequired(), Length(max=100)])
     price = DecimalField('Price', validators=[DataRequired(), NumberRange(min=0)], places=2)
-    category = StringField('Category', validators=[DataRequired(), Length(max=50)])
-    expense_type = StringField('Expense Type', validators=[DataRequired(), Length(max=50)])
-    bill_type = StringField('Bill Type', validators=[DataRequired(), Length(max=50)])
+    category = SelectField('Category', choices=[('food', 'Food'), ('transportation', 'Transportation'), ('entertainment', 'Entertainment')], validators=[DataRequired()])
+    expense_type = SelectField('Expense Type', choices=[('one-time', 'One-Time'), ('recurring', 'Recurring')], validators=[DataRequired()])
+    bill_type = SelectField('Bill Type', choices=[('none', 'None'), ('monthly', 'Monthly'), ('yearly', 'Yearly')], validators=[DataRequired()])
     submit = SubmitField('Add Expense')
