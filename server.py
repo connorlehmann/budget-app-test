@@ -17,7 +17,7 @@ def home():
     else:
         expense_list = []
 
-    total_spent = sum(expense["price"] for expense in expense_list)
+    total_spent = float(sum(expense["price"] for expense in expense_list))
 
     return render_template('Home.html', expenses=expense_list, total_spent=total_spent)
 
@@ -33,7 +33,7 @@ def addexpense():
 
     if form.validate_on_submit():
         name = form.name.data
-        price = form.price.data
+        price = float(form.price.data)
         category = form.category.data
         expense_type = form.expense_type.data
         bill_type = form.bill_type.data
