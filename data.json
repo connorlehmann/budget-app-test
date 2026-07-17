@@ -1,1 +1,1 @@
-[{"name": "apple", "price": 3.0, "category": "food", "expense_type": "one-time", "bill_type": "none", "date": "07/17/2026"}]
+[{"name": "apple", "price": 3.0, "category": "food", "expense_type": "one-time", "bill_type": "none", "date": "07/17/2026"}, {"name": "banana", "price": 4.0, "category": "food", "expense_type": "one-time", "bill_type": "none", "date": "07/17/2026"}, {"name": "gas", "price": 60.0, "category": "transportation", "expense_type": "one-time", "bill_type": "none", "date": "07/17/2026"}]
