@@ -15,7 +15,3 @@ class AddExpenseForm(FlaskForm):
 class DeleteExpenseForm(FlaskForm):
     name = SelectField('Expense Name', choices= [], validators=[DataRequired()])
     submit = SubmitField('Delete Expense')
-
-class NextBillForm(FlaskForm):
-    name = SelectField('Expense Name', choices= [], validators=[DataRequired()])
-    submit = SubmitField('Next Bill')

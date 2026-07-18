@@ -2,25 +2,24 @@
 
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
-
 <html>
 
 	<head>
 		<title>Next Bill </title>
 	</head>
 	<body>
-		<h1>Next Bill </h1>
-		<form method="POST" action="{{ url_for('nextbill') }}">
-			{{ form.hidden_tag() }}
-			{{ form.name.label }} {{ form.name() }}<br>
-			{{ form.submit() }}
-            {{ next_date }}
-            
-		</form>
-		
+
+		{% for name, date in potential_bills %}
+		<tr>
+			<td>{{ name }}</td>
+			<td>{{ date }}</td>
+		</tr>
+		{% endfor %}
+
+	</table>
 
 		<p>
-		<a href="home">Home </a>
+		<a href="home">Add Expense </a>
 		</p>
 	</body>
 </html>

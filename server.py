@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 import json
 from flask import Flask, render_template, redirect, url_for
-from forms import AddExpenseForm, DeleteExpenseForm, NextBillForm
+from forms import AddExpenseForm, DeleteExpenseForm
 import os
 
 
@@ -82,7 +82,6 @@ def deleteexpense():
 
 @app.route("/nextbill", methods=['GET', 'POST'])
 def nextbill():
-    form = NextBillForm()
 
     if os.path.exists("data.json"):
         with open("data.json", "r") as f:
@@ -90,25 +89,21 @@ def nextbill():
     else:
         expense_list = []
 
-    form.name.choices = [expense for expense in expense_list if expense["bill_type"] in ["monthly", "yearly"]]
+    billed_expenses = [expense for expense in expense_list if expense["bill_type"] in ["monthly", "yearly"]]
 
-    if form.validate_on_submit():
-        name = form.name.data
+    potential_bills = []
 
-        for item in form.name.choices:
-            if item["name"] == name:
-                base_date = datetime.strptime(item["date"], "%m/%d/%Y")
-                if item["bill_type"] == "monthly":
-                    next_date = base_date + timedelta(days=30)
+    for item in billed_expenses:
+        base_date = datetime.strptime(item["date"], "%m/%d/%Y")
+        if item["bill_type"] == "monthly":
+            next_date = base_date + timedelta(days=30)
+            potential_bills.append((item["name"], next_date.strftime("%m/%d/%Y")))
 
-                elif item["bill_type"] == "weekly":
-                    next_date = base_date + timedelta(days=7)
+        elif item["bill_type"] == "weekly":
+            next_date = base_date + timedelta(days=7)
+            potential_bills.append((item["name"], next_date.strftime("%m/%d/%Y")))
 
-
-
-        return redirect(url_for('nextbill'))
-
-    return render_template('NextBill.html', title='Regular', form=form)
+    return render_template('NextBill.html', title='Regular', potential_bills=potential_bills)
 
 
 if __name__ == "__main__":
