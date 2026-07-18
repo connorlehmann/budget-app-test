@@ -67,6 +67,8 @@ def deleteexpense():
     else:
         expense_list = []
 
+    form.name.choices = [(expense["name"], expense["name"]) for expense in expense_list]
+
     if form.validate_on_submit():
         name = form.name.data
         expense_list = [expense for expense in expense_list if expense["name"] != name]
@@ -88,12 +90,12 @@ def nextbill():
     else:
         expense_list = []
 
-    tapered_expenses = [expense for expense in expense_list if expense["bill_type"] in ["monthly", "weekly"]]
+    form.name.choices = [expense for expense in expense_list if expense["bill_type"] in ["monthly", "yearly"]]
 
     if form.validate_on_submit():
         name = form.name.data
 
-        for item in tapered_expenses:
+        for item in form.name.choices:
             if item["name"] == name:
                 base_date = datetime.strptime(item["date"], "%m/%d/%Y")
                 if item["bill_type"] == "monthly":
