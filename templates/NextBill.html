@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+<html>
+
+	<head>
+		<title>Next Bill </title>
+	</head>
+	<body>
+		<h1>Next Bill </h1>
+		<form method="POST" action="{{ url_for('nextbill') }}">
+			{{ form.hidden_tag() }}
+			{{ form.name.label }} {{ form.name() }}<br>
+			{{ form.submit() }}
+		</form>
+		
+
+		<p>
+		<a href="home">Home </a>
+		</p>
+	</body>
+</html>

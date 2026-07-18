@@ -21,3 +21,15 @@ class DeleteExpenseForm(FlaskForm):
 
     name = SelectField('Expense Name', choices=[(expense["name"], expense["name"]) for expense in expense_list], validators=[DataRequired()])
     submit = SubmitField('Delete Expense')
+
+class NextBillForm(FlaskForm):
+    if os.path.exists("data.json"):
+        with open("data.json", "r") as f:
+            expense_list = json.load(f)
+    else:
+        expense_list = []
+
+    choices = [expense for expense in expense_list if expense["bill_type"] in ["monthly", "yearly"]]
+    
+    name = SelectField('Expense Name', choices=choices, validators=[DataRequired()])
+    submit = SubmitField('Next Bill')

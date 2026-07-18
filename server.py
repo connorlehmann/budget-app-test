@@ -1,7 +1,7 @@
 from datetime import datetime
 import json
 from flask import Flask, render_template, redirect, url_for
-from forms import AddExpenseForm, DeleteExpenseForm
+from forms import AddExpenseForm, DeleteExpenseForm, NextBillForm
 import os
 
 
@@ -77,6 +77,24 @@ def deleteexpense():
         return redirect(url_for('home'))
 
     return render_template('DeleteExpense.html', title='Regular', form=form)
+
+@app.route("/nextbill", methods=['GET', 'POST'])
+def nextbill():
+    form = NextBillForm()
+
+    if os.path.exists("data.json"):
+        with open("data.json", "r") as f:
+            expense_list = json.load(f)
+    else:
+        expense_list = []
+
+    if form.validate_on_submit():
+        name = form.name.data
+        
+
+        return redirect(url_for('home'))
+
+    return render_template('NextBill.html', title='Regular', form=form)
 
 
 if __name__ == "__main__":
