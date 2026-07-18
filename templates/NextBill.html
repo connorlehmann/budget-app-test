@@ -7,7 +7,16 @@
 	<head>
 		<title>Next Bill </title>
 	</head>
-	<body>
+		<h1>Next Bill </h1>
+	<table border="1">
+		<tr>
+			<th colspan="3">Categorical Spending</th>
+		</tr>
+
+		<tr>
+			<th>Name</th>
+			<th>Next Bill Date</th>
+		</tr>
 
 		{% for name, date in potential_bills %}
 		<tr>
