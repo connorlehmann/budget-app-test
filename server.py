@@ -97,11 +97,17 @@ def nextbill():
         base_date = datetime.strptime(item["date"], "%m/%d/%Y")
         if item["bill_type"] == "monthly":
             next_date = base_date + timedelta(days=30)
-            potential_bills.append((item["name"], next_date.strftime("%m/%d/%Y")))
-
-        elif item["bill_type"] == "weekly":
-            next_date = base_date + timedelta(days=7)
-            potential_bills.append((item["name"], next_date.strftime("%m/%d/%Y")))
+        if item["bill_type"] == "yearly":
+            next_date = base_date + timedelta(days=365)
+        
+        while next_date < datetime.now():
+            if item["bill_type"] == "monthly":
+                next_date += timedelta(days=30)
+            elif item["bill_type"] == "yearly":
+                next_date += timedelta(days=365)
+        
+        potential_bills.append((item["name"], next_date.strftime("%m/%d/%Y")))
+            
 
     return render_template('NextBill.html', title='Regular', potential_bills=potential_bills)
 
