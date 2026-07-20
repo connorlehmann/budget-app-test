@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-
-<html>
-
-	<head>
-		<title>Add Expense </title>
-	</head>
-	<body>
-		<h1>Add Expense </h1>
-		<form method="POST" action="{{ url_for('addexpense') }}">
+{% extends "Base.html" %}
+{% block title %}Add Expense{% endblock %}
+{% block heading %}Add Expense{% endblock %}
+{% block content %}
+    <form method="POST" action="{{ url_for('addexpense') }}">
 			{{ form.hidden_tag() }}
 			{{ form.name.label }} {{ form.name() }}<br>
 			{{ form.price.label }} {{ form.price() }}<br>
@@ -19,10 +11,9 @@
 			{{ form.bill_type.label }} {{ form.bill_type() }}<br>
 			{{ form.submit() }}
 		</form>
-		
-
-		<p>
-		<a href="home">Home </a>
-		</p>
-	</body>
-</html>
+{% endblock %}
+{% block footer %}
+    <p>
+        <a href="home">Home </a>
+    </p>
+{% endblock %}

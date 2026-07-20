@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-
-<html>
-
-	<head>
-		<title>Delete Expense </title>
-	</head>
-	<body>
-		<h1>Delete Expense </h1>
-		<form method="POST" action="{{ url_for('deleteexpense') }}">
-			{{ form.hidden_tag() }}
-			{{ form.name.label }} {{ form.name() }}<br>
-			{{ form.submit() }}
-		</form>
-		
-
-		<p>
-		<a href="home">Home </a>
-		</p>
-	</body>
-</html>
+{% extends "Base.html" %}
+{% block title %}Delete Expense{% endblock %}
+{% block heading %}Delete Expense{% endblock %}
+{% block content %}
+    <form method="POST" action="{{ url_for('deleteexpense') }}">
+        {{ form.hidden_tag() }}
+        {{ form.name.label }} {{ form.name() }}<br>
+        {{ form.submit() }}
+    </form>
+{% endblock %}
+{% block footer %}
+    <p>
+        <a href="home">Home </a>
+    </p>
+{% endblock %}
