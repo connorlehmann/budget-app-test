@@ -12,8 +12,11 @@ app.config['SECRET_KEY'] = 'eZbOFITfJVsEj?#9'
 @app.route("/home")
 def home():
     if os.path.exists("data.json"):
-        with open("data.json", "r") as f:
-            expense_list = json.load(f)
+        try:
+            with open("data.json", "r") as f:
+                expense_list = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            expense_list = []
     else:
         expense_list = []
 
@@ -26,8 +29,11 @@ def addexpense():
     form = AddExpenseForm()
 
     if os.path.exists("data.json"):
-        with open("data.json", "r") as f:
-            expense_list = json.load(f)
+        try:
+            with open("data.json", "r") as f:
+                expense_list = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            expense_list = []
     else:
         expense_list = []
 
@@ -62,8 +68,11 @@ def deleteexpense():
     form = DeleteExpenseForm()
 
     if os.path.exists("data.json"):
-        with open("data.json", "r") as f:
-            expense_list = json.load(f)
+        try:
+            with open("data.json", "r") as f:
+                expense_list = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            expense_list = []
     else:
         expense_list = []
 
@@ -84,8 +93,11 @@ def deleteexpense():
 def nextbill():
 
     if os.path.exists("data.json"):
-        with open("data.json", "r") as f:
-            expense_list = json.load(f)
+        try:
+            with open("data.json", "r") as f:
+                expense_list = json.load(f)
+        except (FileNotFoundError, json.JSONDecodeError):
+            expense_list = []
     else:
         expense_list = []
 
